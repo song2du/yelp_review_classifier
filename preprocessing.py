@@ -50,7 +50,8 @@ def _add_split_labels(subset_df, args):
         for item in item_list[n_train:n_train+n_val]: # n_train부터 n_train+n_val까지 데이터 잘라서 'val' 레이블 추가
             item['split'] = 'val'
         
-        for item in item_list[n_train+n_val:n_train+n_val+n_test]: # n_train+n_val 부터 n_train+n_val+n_test까지 잘라서 'test'레이블 추가
+        for item in item_list[n_train+n_val:]: # n_train+n_val 부터 n_train+n_val+n_test까지 잘라서 'test'레이블 추가
+            # 데이터 유실을 막기 위해 분할 로직 수정함.
             item['split'] = 'test'
         
         final_list.extend(item_list)  # 최종 리스트에 하나씩 추가
